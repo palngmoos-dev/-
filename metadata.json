@@ -1,0 +1,8 @@
+{
+  "name": "아름다운 여행 - 유럽, 꿈의 조각",
+  "description": "Spline 3D와 생동감 넘치는 원색 테마를 활용한 감성적인 유럽 여행 가이드 및 맞춤형 일정 플래너 웹사이트입니다.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
