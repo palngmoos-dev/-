@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { CITIES } from './constants.tsx';
 import { generateTravelItinerary } from './services/geminiService.ts';
@@ -16,6 +17,14 @@ const App: React.FC = () => {
     kakao: '',
     phone: ''
   });
+
+  // 페이지 최상단으로 스크롤하는 함수
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
   const handleCreateItinerary = async () => {
     if (!searchQuery.trim()) return;
@@ -74,7 +83,10 @@ const App: React.FC = () => {
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-white/60 backdrop-blur-lg z-50 border-b border-yellow-100 px-6 py-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="text-3xl font-jua text-rose-500 cursor-pointer hover:scale-105 transition-transform">
+          <div 
+            onClick={scrollToTop}
+            className="text-3xl font-jua text-rose-500 cursor-pointer hover:scale-105 transition-transform"
+          >
             아름다운 여행
           </div>
           <div className="hidden md:flex gap-6 items-center text-lg font-gaegu font-bold text-blue-600">
