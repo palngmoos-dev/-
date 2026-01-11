@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { CITIES } from './constants.tsx';
 import { generateTravelItinerary } from './services/geminiService.ts';
@@ -71,7 +70,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[#FDFCF0]">
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-white/60 backdrop-blur-lg z-50 border-b border-yellow-100 px-6 py-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">

@@ -1,10 +1,14 @@
-
 import { GoogleGenAI, Type } from "@google/genai";
 
-const API_KEY = process.env.API_KEY || "";
-
 export const generateTravelItinerary = async (query: string) => {
-  const ai = new GoogleGenAI({ apiKey: API_KEY });
+  // 안전하게 API_KEY에 접근합니다.
+  const apiKey = typeof process !== 'undefined' ? process.env.API_KEY : '';
+  
+  if (!apiKey) {
+    throw new Error("API_KEY가 설정되지 않았습니다.");
+  }
+
+  const ai = new GoogleGenAI({ apiKey });
   const response = await ai.models.generateContent({
     model: "gemini-3-flash-preview",
     contents: `사용자가 다음 여행 테마로 일정을 요청했습니다: "${query}". 
@@ -39,5 +43,6 @@ export const generateTravelItinerary = async (query: string) => {
     }
   });
 
-  return JSON.parse(response.text.trim());
+  const text = response.text || "";
+  return JSON.parse(text.trim());
 };
