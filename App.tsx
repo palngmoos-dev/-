@@ -1,8 +1,8 @@
 
-import React, { useState, useEffect } from 'react';
-import { CITIES } from './constants';
-import { generateTravelItinerary } from './services/geminiService';
-import { TravelItinerary } from './types';
+import React, { useState } from 'react';
+import { CITIES } from './constants.tsx';
+import { generateTravelItinerary } from './services/geminiService.ts';
+import { TravelItinerary } from './types.ts';
 
 const App: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -25,7 +25,9 @@ const App: React.FC = () => {
       const data = await generateTravelItinerary(searchQuery);
       setItinerary(data);
       // Smooth scroll to results
-      document.getElementById('itinerary-result')?.scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        document.getElementById('itinerary-result')?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
     } catch (error) {
       console.error("Failed to generate itinerary:", error);
       alert("꿈의 조각을 모으는 데 잠시 문제가 생겼어요. 다시 시도해볼까요?");
@@ -69,7 +71,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#FDFCF0]">
+    <div className="min-h-screen">
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-white/60 backdrop-blur-lg z-50 border-b border-yellow-100 px-6 py-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
@@ -94,7 +96,7 @@ const App: React.FC = () => {
 
       {/* Hero Section */}
       <section className="relative h-screen overflow-hidden flex flex-col md:flex-row items-center">
-        {/* Background Spline - Shifted slightly to the right */}
+        {/* Background Spline */}
         <div className="absolute inset-0 z-0 transition-transform duration-700 md:translate-x-[15%]">
           <iframe 
             src='https://my.spline.design/interactivecharactergirl-MVNUAdogrsMEuxlLKVnsyyZB/' 
@@ -171,7 +173,6 @@ const App: React.FC = () => {
 
       {/* Planner CTA Section */}
       <section id="planner" className="py-32 bg-amber-50 relative overflow-hidden">
-        {/* Decorative elements */}
         <div className="absolute -top-10 -left-10 w-40 h-40 bg-blue-200 rounded-full blur-3xl opacity-50"></div>
         <div className="absolute -bottom-10 -right-10 w-60 h-60 bg-rose-200 rounded-full blur-3xl opacity-50"></div>
 
